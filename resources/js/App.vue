@@ -1,6 +1,5 @@
 <template>
     <div>
-        <HeaderComponent></HeaderComponent>
         <router-view></router-view>
     </div>
 </template>
@@ -9,10 +8,6 @@
 </style>
 
 <script>
-    import HeaderComponent from './components/auth/HeaderComponent.vue'
-    export default {
-        components: {
-            HeaderComponent,
-        }
-    }
+    export default {        
+    }    
 </script>
