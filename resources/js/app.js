@@ -13,11 +13,20 @@ import router from './router';
 
 import VueAxios from 'vue-axios';
 import axios from 'axios';
+import store from './store/store';
 Vue.use(VueAxios, axios);
 
-const app = new Vue ( 
-    Vue.util.extend(
-        {router}, 
-        App,
-    )
-).$mount('#app');
+// const app = new Vue ( 
+//     Vue.util.extend(
+//         {router}, 
+//         App,
+//         store,
+//     )
+// ).$mount('#app');
+
+const app = new Vue({
+    el: '#app',
+    store,
+    router,
+    render: (h) =>h(App),
+});

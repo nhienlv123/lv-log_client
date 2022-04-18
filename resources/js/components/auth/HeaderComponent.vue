@@ -1,5 +1,6 @@
 <template>
-    <div class="container-fluid bg-dark mb-3">
+<div>
+    <div class="container-fluid bg-dark mb-1">
         <div class="container">
             <nav class="navbar navbar-dark">
                 <router-link :to="{name: 'home'}">
@@ -16,6 +17,7 @@
             </nav>
         </div>
     </div>
+</div>
 </template>
 
 <script>
