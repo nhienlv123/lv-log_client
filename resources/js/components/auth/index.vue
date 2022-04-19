@@ -10,14 +10,13 @@
 
 <script>
     import HeaderComponent from './HeaderComponent.vue'
-    import {mapMutations, mapActions,mapState} from 'vuex'
+    import {mapMutations, mapActions, mapState, mapGetters} from 'vuex'
     export default {     
         components: {
             HeaderComponent,
         },   
-        computed: 
-            mapState({
-                a: state => state.auth.isLoged
-            }),  
+        computed: {            
+            ...mapGetters('auth', ['userInfo'])
+        }               
     }
 </script>

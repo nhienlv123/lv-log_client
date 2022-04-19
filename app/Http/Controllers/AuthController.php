@@ -12,7 +12,8 @@ class AuthController extends Controller
         $user = new User([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
-            'password' => $request->get('password')
+            'password' => $request->get('password'),
+            'role' => '1',
         ]);
         $user->save();
         return response()->json('successfully sign up');
@@ -24,7 +25,7 @@ class AuthController extends Controller
             return response()->json($user);
         }
         else {
-            return response()->json('sign in fail');
+            return response()->json('Sign in fail. Try again!!!');
         }
     }
 }

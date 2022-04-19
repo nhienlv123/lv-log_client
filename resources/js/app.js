@@ -10,19 +10,12 @@ window.Vue = require('vue').default;
 import App from './App';
 import Vue from 'vue';
 import router from './router';
+import store from './store/store';
 
 import VueAxios from 'vue-axios';
 import axios from 'axios';
-import store from './store/store';
-Vue.use(VueAxios, axios);
 
-// const app = new Vue ( 
-//     Vue.util.extend(
-//         {router}, 
-//         App,
-//         store,
-//     )
-// ).$mount('#app');
+Vue.use(VueAxios, axios);
 
 const app = new Vue({
     el: '#app',
