@@ -4,11 +4,13 @@ import authIndex from "./components/auth/index.vue"
 import SignInComponent from "./components/auth/SignInComponent.vue"
 import SignUpComponent from "./components/auth/SignUpComponent.vue"
 
-import clientIndex  from "./components/client/index.vue"
-import clientDashboard  from "./components/client/Dashboard.vue"
+import clientIndex from "./components/client/index.vue"
+import clientHome from "./components/client/pages/HomeComponent.vue"
+import clientShop from "./components/client/pages/ShopComponent.vue"
+import clientSingle from "./components/client/pages/SingleComponent.vue"
 
 import adminIndex  from "./components/admin/index.vue"
-import adminDashboard  from "./components/admin/Dashboard.vue"
+import adminDashboard  from "./components/admin/pages/Dashboard.vue"
 
 Vue.use(VueRouter);
 
@@ -37,10 +39,20 @@ const routes = [
         component: clientIndex,
         children: [
             {
-                name: 'client.dashboard',
-                path: 'dashboard',
-                component: clientDashboard
-            },            
+                name: 'client.home',
+                path: 'home',
+                component: clientHome
+            },   
+            {
+                name: 'client.shop',
+                path: 'shop',
+                component: clientShop
+            },  
+            {
+                name: 'client.single',
+                path: 'single',
+                component: clientSingle
+            }       
         ]        
     }, 
     {

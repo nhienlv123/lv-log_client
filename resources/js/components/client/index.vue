@@ -1,7 +1,8 @@
 <template>
     <div>
         <HeaderComponent v-bind="{isLoged, userInfo}"></HeaderComponent>
-        <router-view v-bind="{isLoged}"></router-view>
+        <router-view></router-view>
+        <FooterComponent></FooterComponent>
     </div>
 </template>
 
@@ -10,10 +11,12 @@
 
 <script>
     import HeaderComponent from './HeaderComponent.vue'
+    import FooterComponent from './FooterComponent.vue'
     import {mapGetters} from 'vuex'
     export default {             
         components: {
             HeaderComponent,
+            FooterComponent,
         },
         computed: {
             ...mapGetters('auth', ['isLoged', 'userInfo'])
