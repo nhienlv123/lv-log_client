@@ -1,10 +1,17 @@
 <template>
-    <div>CLIENT</div>
+<div>
+    <div v-if="isLoged">       
+        CLIENT        
+    </div>
+    <div v-else>not sign in</div>
+</div>
 </template>
 
 <script>
-    export default {
-
+    export default {        
+        props: {
+            isLoged: { type: Boolean},
+        }
     }
 </script>
 

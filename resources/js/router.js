@@ -1,10 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import indexAuth from "./components/auth/index.vue"
-import HeaderComponent from "./components/auth/HeaderComponent.vue"
+import authIndex from "./components/auth/index.vue"
 import SignInComponent from "./components/auth/SignInComponent.vue"
 import SignUpComponent from "./components/auth/SignUpComponent.vue"
+
+import clientIndex  from "./components/client/index.vue"
 import clientDashboard  from "./components/client/Dashboard.vue"
+
+import adminIndex  from "./components/admin/index.vue"
 import adminDashboard  from "./components/admin/Dashboard.vue"
 
 Vue.use(VueRouter);
@@ -13,7 +16,7 @@ const routes = [
     {   
         name: 'home',
         path: '/',
-        component: indexAuth,
+        component: authIndex,
         children: [            
             {
                 name: 'signin',
@@ -29,15 +32,29 @@ const routes = [
         ]
     },  
     {
-        name: 'client.dashboard',
-        path: '/client/dashboard',
-        component: clientDashboard
-    },
+        name: 'client',
+        path: '/client',
+        component: clientIndex,
+        children: [
+            {
+                name: 'client.dashboard',
+                path: 'dashboard',
+                component: clientDashboard
+            },            
+        ]        
+    }, 
     {
-        name: 'admin.dashboard',
-        path: '/admin/dashboard',
-        component: adminDashboard
-    },    
+        name: 'admin',
+        path: '/admin',
+        component: adminIndex,
+        children: [
+            {
+                name: 'admin.dashboard',
+                path: 'dashboard',
+                component: adminDashboard
+            },            
+        ]        
+    },   
 ]
 
 const router = new VueRouter({

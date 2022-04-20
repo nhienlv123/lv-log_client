@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm-6">
-                <form @submit.prevent="signin(user)">
+                <form @submit.prevent="signIn(user)">
                     <div class="form-group row">
                         <label for="email" class="col-sm-3 col-form-label">Email</label>
                         <input type="email" class="col-sm-9 form-control" id="email" v-model="user.email">
@@ -25,39 +25,26 @@
             return {
                 user:{}
             }
-        },
+        },       
         methods: {
-            signin() {
-                console.log(this.user)
+            ...mapActions('auth',['signin', 'check']),        
+            signIn() {
+                let uri = `http://127.0.0.1:8000/api/signin`;
+                this.axios.post(uri, this.user).then(
+                    (response) => {
+                        if (response.data.email == this.user.email && response.data.role == 1) {
+                            this.$router.push({name: 'client.dashboard'})
+                            this.signin(response.data)
+                        }
+                        else if (response.data.email == this.user.email && response.data.role == 2) {
+                            this.$router.push({name: 'admin.dashboard'})
+                            this.signin(response.data)
+                        }
+                        else alert(response.data);
+                    }
+                )                 
             }
         }
-        // computed: {
-        //     ...mapState({
-        //         a: state => state.auth.isLoged
-        //     }),
-        // },
-        
-        // methods: {
-        //     ...mapActions({
-        //         signin: 'auth/signin'})
-            // signin(user) {
-            //     this.$store.dispatch('auth/signIn', user)
-            // }
-
-
-            // signIn() {
-            //     let uri = `http://127.0.0.1:8000/api/signin`;
-            //     this.axios.post(uri, this.user).then(
-            //         (response) => {
-            //             if (response.data.email == this.user.email) {
-            //                 this.$router.push({name: 'client.dashboard'}) 
-            //                 this.isLoged = !this.isLoged
-            //             }
-            //             else alert('Sign in fail. Try again!!!');
-            //         }
-            //     )                 
-            // }
-        //}
     }
 </script>
 

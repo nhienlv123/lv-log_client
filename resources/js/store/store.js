@@ -4,7 +4,7 @@ Vue.use(Vuex);
 
 import auth from './module/auth';
 const storeData = {
-    module: {
+    modules: {
         auth,
     }
 }
