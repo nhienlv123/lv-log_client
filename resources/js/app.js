@@ -9,7 +9,7 @@ window.Vue = require('vue').default;
 
 import App from './App';
 import Vue from 'vue';
-import router from './router';
+import router from './router/index';
 import store from './store/store';
 
 import VueAxios from 'vue-axios';
