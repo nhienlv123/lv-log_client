@@ -86,8 +86,12 @@
                                                     <a class="dropdown-item" href="index.html">1</a>                                                    
                                                 </div>
                                             </li>
-                                            <li class="nav-item active"><a class="nav-link">Contact</a></li>
-                                            <li class="nav-item active"><a class="nav-link">About</a></li>
+                                            <router-link :to="{name: 'client.checkout'}">
+                                                <li class="nav-item active"><a class="nav-link">Checkout</a></li>
+                                            </router-link>
+                                            <router-link :to="{name: 'client.cart'}">
+                                                <li class="nav-item active"><a class="nav-link">Cart</a></li>
+                                            </router-link>
                                         </ul>
                                     </div>
                                 </nav>

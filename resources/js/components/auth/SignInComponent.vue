@@ -33,7 +33,7 @@
                 this.axios.post(uri, this.user).then(
                     (response) => {
                         if (response.data.email == this.user.email && response.data.role == 1) {
-                            this.$router.push({name: 'client.dashboard'})
+                            this.$router.push({name: 'client.home'})
                             this.signin(response.data)
                         }
                         else if (response.data.email == this.user.email && response.data.role == 2) {
