@@ -20,7 +20,7 @@
             Top,
             Mid,
             Bot,
-            QuickView
-        },                                  
+            QuickView,
+        },                                          
     }
 </script>

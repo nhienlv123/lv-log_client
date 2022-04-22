@@ -3,7 +3,7 @@
         <div class="checkout_area section_padding_100">
             <div class="container">
                 <div class="row">
-                    <CheckoutDetail></CheckoutDetail>
+                    <CheckoutDetail v-bind="{userInfo}"></CheckoutDetail>
                     <OrderDetail></OrderDetail>
                 </div>
             </div>
@@ -15,12 +15,19 @@
 </style>
 
 <script>
+    import {mapGetters} from 'vuex'
     import CheckoutDetail from './components/CheckoutDetail.vue'
     import OrderDetail from './components/OrderDetail.vue'
     export default {             
         components: {
             CheckoutDetail,
             OrderDetail,
-        },                                   
+        },     
+        // props: {
+        //     userInfo: {type: Object}
+        // },
+        computed: {
+            ...mapGetters('auth', ['userInfo'])
+        },                              
     }
 </script>

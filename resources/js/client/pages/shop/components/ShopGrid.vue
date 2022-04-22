@@ -5,7 +5,7 @@
                             <div class="row">
 
                                 <!-- Single gallery Item -->
-                                <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig" data-wow-delay="0.1s">
+                                <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig" data-wow-delay="0.1s" v-for="pro in getProducts" :key="pro.id">
                                     <!-- Product Image -->
                                     <div class="product-img">
                                         <img src="/assets/img/product-img/product-1.jpg" alt="">
@@ -15,8 +15,8 @@
                                     </div>
                                     <!-- Product Description -->
                                     <div class="product-description">
-                                        <h4 class="product-price">$39.90</h4>
-                                        <p>Jeans midi cocktail dress</p>
+                                        <h4 class="product-price">{{pro.price}}</h4>
+                                        <p>{{pro.name}}</p>
                                         <!-- Add to Cart -->
                                         <a href="#" class="add-to-cart-btn">ADD TO CART</a>
                                     </div>
@@ -183,9 +183,21 @@
 </template>
 
 <script>
-export default {
-
-}
+    import {mapGetters} from 'vuex'
+    export default {
+        data() {
+            return {
+                img: this.getProducts
+            }
+        },
+        computed: {
+            ...mapGetters('client', ['getProducts']),
+        },
+        
+        mounted() {
+            console.log(this.getProducts);
+        }
+    }
 </script>
 
 <style>

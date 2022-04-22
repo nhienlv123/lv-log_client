@@ -10,8 +10,8 @@
                             <form action="#" method="post">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="first_name">First Name <span>*</span></label>
-                                        <input type="text" class="form-control" id="first_name" value="" required>
+                                        <label for="first_name">First Name:<span>*</span></label>
+                                        <input type="text" class="form-control" id="first_name" v-model="inputInfo.name" value="" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="last_name">Last Name <span>*</span></label>
@@ -57,7 +57,7 @@
                                     </div>
                                     <div class="col-12 mb-4">
                                         <label for="email_address">Email Address <span>*</span></label>
-                                        <input type="email" class="form-control" id="email_address" value="">
+                                        <input type="email" class="form-control" id="email_address" v-model="userInfo.email">
                                     </div>
 
                                     <div class="col-12">
@@ -81,9 +81,16 @@
 </template>
 
 <script>
-export default {
-
-}
+    export default {
+        props: {
+            userInfo: {type: Object},
+        },
+        data() {
+            return {
+                inputInfo: this.userInfo
+            }
+        }
+    }
 </script>
 
 <style>

@@ -16,7 +16,9 @@
                                 <div class="header-cart-menu d-flex align-items-center ml-auto">
                                     <!-- Cart Area -->
                                     <div class="cart">
-                                        <a id="header-cart-btn" target="_blank"><span class="cart_quantity">2</span> <i class="ti-bag"></i> Your Bag $20</a>
+                                        <router-link :to="{name: 'client.cart'}">
+                                            <a id="header-cart-btn" target="_blank"><i class="ti-bag"></i> Your Bag $20</a>
+                                        </router-link>
                                         <!-- Cart List Area Start -->
                                         <ul class="cart-list">
                                             <li>
@@ -81,10 +83,10 @@
                                                 <li class="nav-item active"><a class="nav-link">Single</a></li>
                                             </router-link>
                                             <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" id="karlDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Type</a>
-                                                <div class="dropdown-menu" aria-labelledby="karlDropdown">
-                                                    <a class="dropdown-item" href="index.html">1</a>                                                    
-                                                </div>
+                                                <a class="nav-link dropdown-toggle" id="karlDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Product Type</a>
+                                                <div class="dropdown-menu" aria-labelledby="karlDropdown" >
+                                                    <a class="dropdown-item" href="index.html" v-for="ty in getTypes" :key="ty.id">{{ty.type_name}}</a>                                                    
+                                                </div>                                               
                                             </li>
                                             <router-link :to="{name: 'client.checkout'}">
                                                 <li class="nav-item active"><a class="nav-link">Checkout</a></li>
@@ -106,12 +108,32 @@
             </div>
         </header>
         <!-- ****** Header Area End ****** -->
+        <section class="top-discount-area d-md-flex align-items-center">
+            <!-- Single Discount Area -->
+            <div class="single-discount-area">
+                <h5>Free Shipping &amp; Returns</h5>
+                <h6><a href="#">BUY NOW</a></h6>
+            </div>
+            <!-- Single Discount Area -->
+            <div class="single-discount-area">
+                <h5>20% Discount for all dresses</h5>
+                <h6>USE CODE: Colorlib</h6>
+            </div>
+            <!-- Single Discount Area -->
+            <div class="single-discount-area">
+                <h5>20% Discount for students</h5>
+                <h6>USE CODE: Colorlib</h6>
+                </div>
+        </section>
+        <!-- ****** Top Discount Area End ****** --> 
     </div>
 </template>
 
 <script>
     export default {
-        
+        props: {
+            getTypes: {type: []}
+        },
     }
 </script>
 
