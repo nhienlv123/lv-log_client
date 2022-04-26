@@ -8,7 +8,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
 
-                    <div class="modal-body" v-for="selected in productSelected" :key="selected.id">
+                    <div class="modal-body" v-for="selected in productQuickView" :key="selected.id">
                         <div class="quickview_body">
                             <div class="container">
                                 <div class="row">
@@ -29,7 +29,7 @@
                                             </div>
                                             <h5 class="price">${{selected.price}} <span>$130</span></h5>
                                             <p>{{selected.description}}</p>
-                                            <router-link :to="{name: 'client.single'}">
+                                            <router-link :to="{name: 'client.single', params: {productId: productSelected}}">
                                                 <div data-dismiss="modal">View Full Product Details</div>
                                             </router-link>
                                         </div>
@@ -75,11 +75,17 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import {mapGetters, mapState} from 'vuex'
     export default {
         computed: {
-            ...mapGetters('client', ['productSelected']),
-        },        
+            ...mapGetters('client', ['productSelected', 'getProducts']),
+            productQuickView() {
+                return Object.values(this.getProducts).filter(getProducts => getProducts.id == this.productSelected)
+            }
+        }, 
+        // mounted () {
+        //     return console.log(this.productSelected);
+        // }       
     }
 </script>
 

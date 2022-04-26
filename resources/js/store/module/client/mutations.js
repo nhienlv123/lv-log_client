@@ -6,6 +6,6 @@ export const mutations = {
         state.products = products;
     },   
     SELECT_PRODUCT(state, productId) {
-        state.productSelected = state.products.filter(products => products.id == productId)
+        state.productSelected = productId
     }
 };

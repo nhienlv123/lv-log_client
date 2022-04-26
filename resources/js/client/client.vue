@@ -22,7 +22,7 @@
             QuickView,
         },
         methods: {
-            ...mapActions('client', ['getType', 'getProduct', 'getType_map', 'getSize']),
+            ...mapActions('client', ['getType', 'getProduct']),
         },
         computed: {
             ...mapGetters('auth', ['userInfo']),
@@ -36,10 +36,7 @@
                 this.getProduct(response.data.products);
             });
             
-            // let uri1 = 'http://127.0.0.1:8000/api/client/getProduct';
-            // this.axios.get(uri1).then(response => {
-            //     this.getProduct(response.data);                
-            // })
+            
         },
             
         

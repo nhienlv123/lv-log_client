@@ -26,7 +26,7 @@ Route::post('/signup', [App\Http\Controllers\AuthController::class, 'signUp']);
 
 Route::get('/client/getClient', [App\Http\Controllers\ClientController::class, 'getClient']);
 
-// Route::get('/client/getProduct', [App\Http\Controllers\ClientController::class, 'getProduct']);
+Route::get('/client/getProductInfo/{productId}', [App\Http\Controllers\ProductController::class, 'getProductInfo']);
 
 // Route::get('/client/getType', function () {
 //     return response()->json('hello');

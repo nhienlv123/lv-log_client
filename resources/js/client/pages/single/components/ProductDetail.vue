@@ -2,7 +2,7 @@
     <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area Start >>>>>>>>>>>>>>>>>>>>>>>>> -->
         <section class="single_product_details_area section_padding_0_100">
             <div class="container">
-                <div class="row" v-for="selected in productSelected" :key="selected.id">
+                <div class="row" >
 
                     <div class="col-12 col-md-6">
                         <div class="single_product_thumb">
@@ -21,9 +21,9 @@
 
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <a class="gallery_img" href="/assets/img/product-img/product-9.jpg">
-                                        <img class="d-block w-100" src="/assets/img/product-img/product-9.jpg" alt="First slide">
-                                    </a>
+                                        <!-- <a class="gallery_img" href="/assets/img/product-img/product-9.jpg"> -->
+                                        <img class="d-block w-100" :src="selected.image" alt="First slide">
+                                        <!-- </a> -->
                                     </div>
                                     <div class="carousel-item">
                                         <a class="gallery_img" href="/assets/img/product-img/product-2.jpg">
@@ -66,7 +66,7 @@
                                 <h6 class="widget-title">Size</h6>
                                 <div class="widget-desc">
                                     <ul>
-                                        <li><a href="#">32</a></li>
+                                        <li v-for="size in selected.sizes" :key="size.id"><a href="#">{{size.size}}</a></li>
                                         <li><a href="#">34</a></li>
                                         <li><a href="#">36</a></li>
                                         <li><a href="#">38</a></li>
@@ -141,8 +141,9 @@
 <script>
     import {mapGetters} from 'vuex'
     export default {
+        
         computed: {
-            ...mapGetters('client', ['productSelected']),
+            ...mapGetters('client', {selected: 'productSelected'}),
         },          
     }
 </script>
