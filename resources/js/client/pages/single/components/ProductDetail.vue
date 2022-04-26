@@ -2,7 +2,7 @@
     <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area Start >>>>>>>>>>>>>>>>>>>>>>>>> -->
         <section class="single_product_details_area section_padding_0_100">
             <div class="container">
-                <div class="row">
+                <div class="row" v-for="selected in productSelected" :key="selected.id">
 
                     <div class="col-12 col-md-6">
                         <div class="single_product_thumb">
@@ -48,9 +48,9 @@
                     <div class="col-12 col-md-6">
                         <div class="single_product_desc">
 
-                            <h4 class="title"><a href="#">Long Yellow Dress</a></h4>
+                            <h4 class="title"><a href="#">{{selected.name}}</a></h4>
 
-                            <h4 class="price">$ 39.99</h4>
+                            <h4 class="price">$ {{selected.price}}</h4>
 
                             <p class="available">Available: <span class="text-muted">In Stock</span></p>
 
@@ -96,9 +96,9 @@
 
                                     <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integ er bibendum sodales arcu id te mpus. Ut consectetur lacus.</p>
-                                            <p>Approx length 66cm/26" (Based on a UK size 8 sample) Mixed fibres</p>
-                                            <p>The Model wears a UK size 8/ EU size 36/ US size 4 and her height is 5'8"</p>
+                                            <p>{{selected.description}}</p>
+                                            <!-- <p>Approx length 66cm/26" (Based on a UK size 8 sample) Mixed fibres</p>
+                                            <p>The Model wears a UK size 8/ EU size 36/ US size 4 and her height is 5'8"</p> -->
                                         </div>
                                     </div>
                                 </div>
@@ -139,9 +139,12 @@
 </template>
 
 <script>
-export default {
-
-}
+    import {mapGetters} from 'vuex'
+    export default {
+        computed: {
+            ...mapGetters('client', ['productSelected']),
+        },          
+    }
 </script>
 
 <style>

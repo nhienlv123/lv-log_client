@@ -8,9 +8,9 @@
                                 <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig" data-wow-delay="0.1s" v-for="pro in getProducts" :key="pro.id">
                                     <!-- Product Image -->
                                     <div class="product-img">
-                                        <img src="/assets/img/product-img/product-1.jpg" alt="">
-                                        <div class="product-quicview">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                                        <img :src="pro.image" alt="">
+                                        <div @click="selectProduct(pro.id)" class="product-quicview">
+                                            <a data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
                                         </div>
                                     </div>
                                     <!-- Product Description -->
@@ -183,20 +183,20 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
-    export default {
-        data() {
-            return {
-                img: this.getProducts
-            }
-        },
+    import {mapGetters, mapActions} from 'vuex'
+    export default {       
         computed: {
             ...mapGetters('client', ['getProducts']),
         },
-        
-        mounted() {
-            console.log(this.getProducts);
+        methods: {
+            ...mapActions('client', ['selectProduct']),
+            // selectProduct(productId) {
+            //     this.selectProduct(productId);
+            // }
         }
+        // mounted() {
+        //     console.log(this.getProducts);
+        // }
     }
 </script>
 

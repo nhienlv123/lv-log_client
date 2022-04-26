@@ -4,5 +4,9 @@ export const getters = {
     },   
     getProducts: state => {
         return state.products;
-    }
+    },
+    productSelected: state => {
+        return state.productSelected;
+    },
+   
 };

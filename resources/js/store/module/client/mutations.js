@@ -4,5 +4,8 @@ export const mutations = {
     },
     GET_PRODUCT(state, products) {
         state.products = products;
+    },   
+    SELECT_PRODUCT(state, productId) {
+        state.productSelected = state.products.filter(products => products.id == productId)
     }
 };

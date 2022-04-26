@@ -8,18 +8,18 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
 
-                    <div class="modal-body">
+                    <div class="modal-body" v-for="selected in productSelected" :key="selected.id">
                         <div class="quickview_body">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12 col-lg-5">
                                         <div class="quickview_pro_img">
-                                            <img src="/assets/img/product-img/product-1.jpg" alt="">
+                                            <img :src="selected.image" alt="">
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-7">
                                         <div class="quickview_pro_des">
-                                            <h4 class="title">Boutique Silk Dress</h4>
+                                            <h4 class="title">{{selected.name}}</h4>
                                             <div class="top_seller_product_rating mb-15">
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -27,9 +27,11 @@
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                             </div>
-                                            <h5 class="price">$120.99 <span>$130</span></h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia expedita quibusdam aspernatur, sapiente consectetur accusantium perspiciatis praesentium eligendi, in fugiat?</p>
-                                            <a>View Full Product Details</a>
+                                            <h5 class="price">${{selected.price}} <span>$130</span></h5>
+                                            <p>{{selected.description}}</p>
+                                            <router-link :to="{name: 'client.single'}">
+                                                <div>View Full Product Details</div>
+                                            </router-link>
                                         </div>
                                         <!-- Add to Cart Form -->
                                         <form class="cart" method="post">
@@ -43,7 +45,7 @@
                                             <button type="submit" name="addtocart" value="5" class="cart-submit">Add to cart</button>
                                             <!-- Wishlist -->
                                             <div class="modal_pro_wishlist">
-                                                <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
+                                                <a  target="_blank"><i class="ti-heart"></i></a>
                                             </div>
                                             <!-- Compare -->
                                             <div class="modal_pro_compare">
@@ -73,9 +75,12 @@
 </template>
 
 <script>
-export default {
-
-}
+    import {mapGetters} from 'vuex'
+    export default {
+        computed: {
+            ...mapGetters('client', ['productSelected']),
+        },        
+    }
 </script>
 
 <style>

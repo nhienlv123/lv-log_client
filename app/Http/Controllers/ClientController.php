@@ -11,14 +11,17 @@ use App\Models\Type;
 
 class ClientController extends Controller
 {
-    public function getType() {
+    public function getClient() {        
         $types = Type::all();
         $products = Product::all();
-        return response()->json(["products"=>$products, "types"=>$types]);
-        // return new ClientCollection(Type::all());
+        return response()->json(["products"=>$products, "types"=>$types]);        
     }
-    public function getProduct() {
-        $product = Product::all();
-        return response()->json($product);
-    }
+
+    // public function getDetail(Product $products, Size $sizes, Type_map $type_maps) {
+    //     $details = $products
+    //         ->join('sizes', 'sizes.product_id', '=', 'products.id')
+    //         ->select('products.*', 'sizes.*')
+    //         ->get();
+    //     return response()->json($product);
+    // }
 }

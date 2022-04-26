@@ -1,6 +1,7 @@
 <template>
     <div>      
         <HeaderComponent v-bind="{getTypes, }"></HeaderComponent>
+        <QuickView></QuickView>
         <router-view></router-view>
         <FooterComponent></FooterComponent>
     </div>
@@ -10,6 +11,7 @@
 </style>
 
 <script>
+    import QuickView from './components/modals/QuickView.vue'
     import HeaderComponent from './components/layouts/HeaderComponent.vue'
     import FooterComponent from './components/layouts/FooterComponent.vue'
     import {mapGetters, mapActions} from 'vuex'
@@ -17,25 +19,29 @@
         components: {
             HeaderComponent,
             FooterComponent,
+            QuickView,
         },
         methods: {
-            ...mapActions('client', ['getType', 'getProduct']),
+            ...mapActions('client', ['getType', 'getProduct', 'getType_map', 'getSize']),
         },
         computed: {
             ...mapGetters('auth', ['userInfo']),
             ...mapGetters('client', ['getTypes']),
         },  
         created() {
-            let uri = 'http://127.0.0.1:8000/api/client/getType';
+            // Lấy toàn bộ data của types và products
+            let uri = 'http://127.0.0.1:8000/api/client/getClient';
             this.axios.get(uri).then(response => {
                 this.getType(response.data.types); 
                 this.getProduct(response.data.products);
             });
-        },
-            // let uri = 'http://127.0.0.1:8000/api/client/getProduct';
-            // this.axios.get(uri).then(response => {
+            
+            // let uri1 = 'http://127.0.0.1:8000/api/client/getProduct';
+            // this.axios.get(uri1).then(response => {
             //     this.getProduct(response.data);                
             // })
+        },
+            
         
         
                                     

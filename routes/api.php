@@ -24,8 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/signin', [App\Http\Controllers\AuthController::class, 'signIn']);
 Route::post('/signup', [App\Http\Controllers\AuthController::class, 'signUp']);
 
-Route::get('/client/getType', [App\Http\Controllers\ClientController::class, 'getType']);
-Route::get('/client/getProduct', [App\Http\Controllers\ClientController::class, 'getProduct']);
+Route::get('/client/getClient', [App\Http\Controllers\ClientController::class, 'getClient']);
+
+// Route::get('/client/getProduct', [App\Http\Controllers\ClientController::class, 'getProduct']);
 
 // Route::get('/client/getType', function () {
 //     return response()->json('hello');

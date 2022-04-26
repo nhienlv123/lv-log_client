@@ -1,7 +1,6 @@
 <template>
     <div>
-        <Top></Top>
-        <QuickView></QuickView>
+        <Top></Top>        
         <Mid></Mid>
         <Bot></Bot>
     </div>
@@ -14,13 +13,12 @@
     import Top from './components/Top.vue'
     import Mid from './components/Mid.vue'
     import Bot from './components/Bot.vue'
-    import QuickView from '../../components/modals/QuickView.vue'
+    
     export default {             
         components: {
             Top,
             Mid,
             Bot,
-            QuickView,
         },                                          
     }
 </script>
