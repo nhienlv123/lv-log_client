@@ -1,7 +1,7 @@
 // import trang auth
-import authIndex from "../components/auth/index.vue"
-import SignInComponent from "../components/auth/SignInComponent.vue"
-import SignUpComponent from "../components/auth/SignUpComponent.vue"
+import authIndex from "../components/auth/auth.vue"
+import SignInComponent from "../components/auth/pages/SignInComponent.vue"
+import SignUpComponent from "../components/auth/pages/SignUpComponent.vue"
 
 // import trang Client
 import ClientIndex from "../client/client.vue"
@@ -22,8 +22,8 @@ let authPage = {
     component: authIndex,
     children: [            
         {
-            name: 'signin',
-            path: 'signin',
+            name: 'login',
+            path: 'login',
             component: SignInComponent
         },
         {

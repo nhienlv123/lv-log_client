@@ -10,9 +10,9 @@
                                     <div class="menu-list">
                                         <ul id="menu-content2" class="menu-content collapse out">
                                             <!-- Single Item -->
-                                            <li data-toggle="collapse" data-target="#women2">
-                                                <a href="#">Woman wear</a>
-                                                <ul class="sub-menu collapse show" id="women2">
+                                            <li data-toggle="collapse" data-target="#women2" class="collapsed" v-for="type in getTypes" :key="type.id">
+                                                <a href="#">{{type.type_name}}</a>
+                                                <ul class="sub-menu collapse" id="women2">
                                                     <li><a href="#">Midi Dresses</a></li>
                                                     <li><a href="#">Maxi Dresses</a></li>
                                                     <li><a href="#">Prom Dresses</a></li>
@@ -152,9 +152,12 @@
 </template>
 
 <script>
-export default {
-
-}
+    import {mapGetters} from 'vuex'
+    export default {
+        computed: {
+            ...mapGetters('client',['getTypes']),
+        }
+    }
 </script>
 
 <style>

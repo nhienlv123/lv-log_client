@@ -20,8 +20,9 @@ use App\Http\Controllers\ClientController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/', [App\Http\Controllers\AuthController::class, 'check']);
+Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
 
-Route::post('/signin', [App\Http\Controllers\AuthController::class, 'signIn']);
 Route::post('/signup', [App\Http\Controllers\AuthController::class, 'signUp']);
 
 Route::get('/client/getClient', [App\Http\Controllers\ClientController::class, 'getClient']);
