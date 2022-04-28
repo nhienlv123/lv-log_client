@@ -38,7 +38,7 @@
                             console.log(response.data.data);
                         }
                         else if (response.data.user.email == this.user.email && response.data.user.role == 2) {
-                            this.$router.push({name: 'admin.dashboard'})
+                            this.$router.push({name: 'admin.home'})
                             this.signin(response.data.user)
                         }
                         else alert(response.data);

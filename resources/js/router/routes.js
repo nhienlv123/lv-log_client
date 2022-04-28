@@ -12,8 +12,12 @@ import CheckoutIndex from '../client/pages/checkout'
 import CartIndex from '../client/pages/cart'
 
 // import trang Admin
-import adminIndex  from "../components/admin/index.vue"
-import adminDashboard  from "../components/admin/pages/Dashboard.vue"
+import AdminIndex  from "../components/admin/admin.vue"
+import AdminHome  from "../components/admin/pages/home"
+import AdminProduct from "../components/admin/pages/product"
+import AddProduct from "../components/admin/pages/product/components/AddProduct.vue"
+import ListProduct from '../components/admin/pages/product/components/ListProduct.vue'
+import EditProduct from '../components/admin/pages/product/components/EditProduct.vue'
 
 // router trang Auth
 let authPage = {   
@@ -72,13 +76,34 @@ let clientPage = {
 let adminPage = {
     name: 'admin',
     path: '/admin',
-    component: adminIndex,
+    component: AdminIndex,
     children: [
         {
-            name: 'admin.dashboard',
-            path: 'dashboard',
-            component: adminDashboard
-        },            
+            name: 'admin.home',
+            path: 'home',
+            component: AdminHome
+        },  
+        {
+            path: 'product',
+            component: AdminProduct,
+            children: [
+                {
+                    name: 'admin.product.add',
+                    path: 'add',
+                    component: AddProduct,
+                },
+                {
+                    name: 'admin.product.list',
+                    path: 'list',
+                    component: ListProduct,
+                },
+                {
+                    name: 'admin.product.edit',
+                    path: 'edit',
+                    component: EditProduct,
+                }
+            ]
+        }          
     ]        
 };
 

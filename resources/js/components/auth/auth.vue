@@ -31,7 +31,7 @@
                     this.signin(response.data.user);
                 }
                 else if (response.data.data && response.data.user.role == 2) {
-                    this.$router.push({name: 'admin.dashboard'});
+                    this.$router.push({name: 'admin.home'});
                     this.signin(response.data.user);
                 }
                 else {
