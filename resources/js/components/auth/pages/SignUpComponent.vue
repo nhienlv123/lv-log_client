@@ -31,9 +31,9 @@
         },
         methods: {
             signUp() {
-                let uri ='http://127.0.0.1:8000/api/signup';
+                let uri =`http://127.0.0.1:8000/api/register`;
                 this.axios.post(uri, this.user).then((response) =>{
-                    this.$router.push({name: 'signin'});
+                    this.$router.push({name: 'login'});
                 });
             }
         }

@@ -21,26 +21,10 @@
             FooterComponent,
             QuickView,
         },
-        methods: {
-            ...mapActions('client', ['getType', 'getProduct']),
-        },
+        
         computed: {
             ...mapGetters('auth', ['userInfo']),
             ...mapGetters('client', ['getTypes']),
-        },  
-        created() {
-            // Lấy toàn bộ data của types và products
-            let uri = 'http://127.0.0.1:8000/api/client/getClient';
-            this.axios.get(uri).then(response => {
-                this.getType(response.data.types); 
-                this.getProduct(response.data.products);
-            });
-            
-            
-        },
-            
-        
-        
-                                    
+        },                        
     }
 </script>

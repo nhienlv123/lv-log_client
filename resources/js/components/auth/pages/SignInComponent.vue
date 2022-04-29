@@ -27,19 +27,19 @@
             }
         },       
         methods: {
-            ...mapActions('auth',['signin',]),        
+            ...mapActions('auth',['login',]),        
             signIn() {
                 let uri = `http://127.0.0.1:8000/api/login`;
                 this.axios.post(uri, this.user).then(
                     (response) => {
                         if (response.data.user.email == this.user.email && response.data.user.role == 1) {
                             this.$router.push({name: 'client.home'})
-                            this.signin(response.data.user)
+                            this.login(response.data.user)
                             console.log(response.data.data);
                         }
                         else if (response.data.user.email == this.user.email && response.data.user.role == 2) {
                             this.$router.push({name: 'admin.home'})
-                            this.signin(response.data.user)
+                            this.login(response.data.user)
                         }
                         else alert(response.data);
                     }

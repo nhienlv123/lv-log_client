@@ -8,10 +8,10 @@
                 </router-link>
                 <div>
                     <router-link :to="{name: 'login'}">
-                        <button class="btn btn-success">Sign in</button>
+                        <button class="btn btn-success">Log in</button>
                     </router-link>   
-                    <router-link :to="{name: 'signup'}">              
-                        <button class="btn btn-success">Sign up</button>
+                    <router-link :to="{name: 'register'}">              
+                        <button class="btn btn-success">Register</button>
                     </router-link>   
                 </div>
             </nav>

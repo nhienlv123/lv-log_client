@@ -19,20 +19,20 @@
             ...mapGetters('auth', ['userInfo'])
         },
         methods: {
-            ...mapActions('auth', ['signin',])
+            ...mapActions('auth', ['login',])
         },
         created() {
             // Lấy toàn bộ data của types và products
             let uri = 'http://127.0.0.1:8000/api';
             this.axios.get(uri).then(response => {
-                console.log(response.data);
-                if (response.data.data && response.data.user.role == 1) {
+                // console.log(response.data);
+                if (response.data.isLoged && response.data.user.role == 1) {
                     this.$router.push({name: 'client.home'});
-                    this.signin(response.data.user);
+                    this.login(response.data.user);
                 }
-                else if (response.data.data && response.data.user.role == 2) {
+                else if (response.data.isLoged && response.data.user.role == 2) {
                     this.$router.push({name: 'admin.home'});
-                    this.signin(response.data.user);
+                    this.login(response.data.user);
                 }
                 else {
                     this.$router.push({name: 'login'});

@@ -16,9 +16,9 @@
                                 <div class="header-cart-menu d-flex align-items-center ml-auto">
                                     <!-- Cart Area -->
                                     <div class="cart">
-                                        <router-link :to="{name: 'client.cart'}">
-                                            <a id="header-cart-btn" target="_blank"><i class="ti-bag"></i> Your Bag $20</a>
-                                        </router-link>
+                                        
+                                            <a id="header-cart-btn" target="_blank" @click.prevent="logOut">Log out<i class="ti-log-off"></i> </a>
+                                       
                                         <!-- Cart List Area Start -->
                                         <ul class="cart-list">
                                             <li>
@@ -130,9 +130,22 @@
 </template>
 
 <script>
+    import {mapActions} from 'vuex'
     export default {
         props: {
             getTypes: {type: []}
+        },
+        methods: {
+            ...mapActions('auth', ['logout']),
+            logOut() {
+                let uri = `http://127.0.0.1:8000/api/logout`;
+                this.axios.get(uri).then(response => {
+                    if (response.data.isLogout) {
+                        this.$router.push({name: 'home'});
+                        this.logout();
+                    }
+                })
+            }
         },
     }
 </script>

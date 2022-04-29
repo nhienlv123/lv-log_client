@@ -92,7 +92,16 @@
             <!-- Right side toggle and nav items -->
             <!-- ============================================================== -->
             <ul class="navbar-nav float-end">                        
-
+              <!-- ============================================================== -->
+              <!-- create new -->
+              <!-- ============================================================== -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" @click.prevent="logOut">
+                  <span class="d-none d-md-block">Logout<i class="fa fa-power-off me-1 ms-1"></i>
+                  </span>                  
+                </a>               
+              </li>
+              <!-- ============================================================== -->
               <!-- ============================================================== -->
               <!-- User profile and search -->
               <!-- ============================================================== -->
@@ -122,32 +131,7 @@
                   class="dropdown-menu dropdown-menu-end user-dd animated"
                   aria-labelledby="navbarDropdown"
                 >
-                  <a class="dropdown-item" href="javascript:void(0)"
-                    ><i class="mdi mdi-account me-1 ms-1"></i> My Profile</a
-                  >
-                  <a class="dropdown-item" href="javascript:void(0)"
-                    ><i class="mdi mdi-wallet me-1 ms-1"></i> My Balance</a
-                  >
-                  <a class="dropdown-item" href="javascript:void(0)"
-                    ><i class="mdi mdi-email me-1 ms-1"></i> Inbox</a
-                  >
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="javascript:void(0)"
-                    ><i class="mdi mdi-settings me-1 ms-1"></i> Account
-                    Setting</a
-                  >
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="javascript:void(0)"
-                    ><i class="fa fa-power-off me-1 ms-1"></i> Logout</a
-                  >
-                  <div class="dropdown-divider"></div>
-                  <div class="ps-4 p-10">
-                    <a
-                      href="javascript:void(0)"
-                      class="btn btn-sm btn-success btn-rounded text-white"
-                      >View Profile</a
-                    >
-                  </div>
+                 
                 </ul>
               </li>
               <!-- ============================================================== -->
@@ -163,9 +147,21 @@
 </template>
 
 <script>
-export default {
-
-}
+    import {mapActions} from 'vuex'
+    export default {
+        methods: {
+            ...mapActions('auth', ['logout']),
+            logOut() {
+                let uri = `http://127.0.0.1:8000/api/logout`;
+                this.axios.get(uri).then(response => {
+                    if (response.data.isLogout) {
+                        this.$router.push({name: 'home'});
+                        this.logout();
+                    }
+                })
+            }
+        },               
+    }
 </script>
 
 <style>

@@ -12,11 +12,11 @@ class AuthController extends Controller
 {
     public function check(Request $request)
     {
-        $data = Auth::check();
+        $isLoged = Auth::check();
         $user = Auth::user();
         return response()->json([
-            'data' => $data,
             'user' => $user,
+            'isLoged' => $isLoged,
         ]);
     }
 
@@ -42,13 +42,12 @@ class AuthController extends Controller
             if (!Hash::check($request->password, $user->password, [])) {
                 throw new \Exception('Error in Login');
             }
-            $data = Auth::check();
+            $isLoged = Auth::check();
             $tokenResult = $user->createToken('authToken')->plainTextToken;
 
             return response()->json([ 
                 'user' => $user,
-                'access_token' => $tokenResult,
-                'data' => $data,
+                'isLoged' => $isLoged,
                 // 'status_code' => 200,
                 // 'token_type' => 'Bearer',
             ]);
@@ -59,5 +58,26 @@ class AuthController extends Controller
                 'error' => $error,
             ]);
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return response()->json([
+            'isLogout' => true,
+            'message' => 'Success Logout',
+        ]);
+    }
+
+    public function register(Request $request)
+    {
+        $user =new User([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'password' => Hash::make($request->get('password')),
+            'role' => '1',
+        ]);
+        $user->save();
+        return response()->json('Success Regist');
     }
 }

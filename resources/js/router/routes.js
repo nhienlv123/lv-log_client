@@ -31,8 +31,8 @@ let authPage = {
             component: SignInComponent
         },
         {
-            name: 'signup',
-            path: 'signup',
+            name: 'register',
+            path: 'register',
             component: SignUpComponent
         },        
     ]
