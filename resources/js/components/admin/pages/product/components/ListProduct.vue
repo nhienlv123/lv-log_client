@@ -36,17 +36,17 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Color</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
+                                    <tr v-for="pro in getProducts" :key="pro.id">
+                                        <th scope="row">{{pro.id}}</th>
+                                        <td>{{pro.name}}</td>
+                                        <td>{{pro.price}}</td>
+                                        <td>{{pro.color}}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
@@ -70,9 +70,12 @@
 </template>
 
 <script>
-export default {
-
-}
+    import {mapGetters} from 'vuex'
+    export default {
+        computed: {
+            ...mapGetters('client',['getProducts'])
+        }
+    }
 </script>
 
 <style>

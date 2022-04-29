@@ -8098,6 +8098,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -8169,7 +8176,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('client', ['getProducts']))
+});
 
 /***/ }),
 
@@ -39808,7 +39818,45 @@ var render = function () {
                   _vm._v("Add a new product: "),
                 ]),
                 _vm._v(" "),
-                _vm._m(1),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass:
+                        "col-sm-3 text-end control-label col-form-label",
+                      attrs: { for: "fname" },
+                    },
+                    [_vm._v("Name:")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-9" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.value.name,
+                          expression: "value.name",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "fname",
+                        placeholder: "First Name Here",
+                      },
+                      domProps: { value: _vm.value.name },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.value, "name", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group row" }, [
                   _c(
@@ -39849,13 +39897,13 @@ var render = function () {
                   ),
                 ]),
                 _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
                 _vm._m(2),
                 _vm._v(" "),
                 _vm._m(3),
                 _vm._v(" "),
                 _vm._m(4),
-                _vm._v(" "),
-                _vm._m(5),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "border-top" }, [
@@ -39898,28 +39946,6 @@ var staticRenderFns = [
           ]),
         ]
       ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-sm-3 text-end control-label col-form-label",
-          attrs: { for: "fname" },
-        },
-        [_vm._v("Name:")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-9" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", id: "fname", placeholder: "First Name Here" },
-        }),
-      ]),
     ])
   },
   function () {
@@ -40238,7 +40264,46 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _vm._m(1),
+      _c("div", { staticClass: "tab-content tabcontent-border" }, [
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane active",
+            attrs: { id: "list", role: "tabpanel" },
+          },
+          [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("table", { staticClass: "table" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                [
+                  _vm._l(_vm.getProducts, function (pro) {
+                    return _c("tr", { key: pro.id }, [
+                      _c("th", { attrs: { scope: "row" } }, [
+                        _vm._v(_vm._s(pro.id)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(pro.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(pro.price))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(pro.color))]),
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _vm._m(4),
+                ],
+                2
+              ),
+            ]),
+          ]
+        ),
+      ]),
     ]),
   ])
 }
@@ -40268,67 +40333,52 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "tab-content tabcontent-border" }, [
-      _c(
-        "div",
-        {
-          staticClass: "tab-pane active",
-          attrs: { id: "list", role: "tabpanel" },
-        },
-        [
-          _c("div", { staticClass: "card-body" }, [
-            _c("h4", { staticClass: "card-title mb-0" }, [
-              _vm._v("List product: "),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("table", { staticClass: "table" }, [
-            _c("thead", [
-              _c("tr", [
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("First")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Last")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Handle")]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("tbody", [
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Mark")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Otto")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@mdo")]),
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("2")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Jacob")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Thornton")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@fat")]),
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("3")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Larry")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("the Bird")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@twitter")]),
-              ]),
-            ]),
-          ]),
-        ]
-      ),
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h4", { staticClass: "card-title mb-0" }, [_vm._v("List product: ")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Price")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Color")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", { attrs: { scope: "row" } }, [_vm._v("2")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Jacob")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Thornton")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("@fat")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", { attrs: { scope: "row" } }, [_vm._v("3")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Larry")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("the Bird")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("@twitter")]),
     ])
   },
 ]
