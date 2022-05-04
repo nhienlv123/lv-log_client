@@ -24,4 +24,14 @@ class ProductManagementService
         // }
         return $products;
     }
+
+    public function addProduct($data){
+        $message = $this->productManagementProxy->addProduct($data);        
+        return $message;
+    }
+
+    public function deleteProduct($id){
+        $message = $this->productManagementProxy->deleteProduct($id);        
+        return $message;
+    }
 }

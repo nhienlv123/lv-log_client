@@ -39,6 +39,8 @@
                                         <th scope="col">Name</th>
                                         <th scope="col">Price</th>
                                         <th scope="col">Color</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -47,6 +49,14 @@
                                         <td>{{pro.name}}</td>
                                         <td>{{pro.price}}</td>
                                         <td>{{pro.color}}</td>
+                                        <td><img :src="pro.image" alt="" width="100px"></td>
+                                        <td>
+                                            <router-link :to="{name: 'admin.product.edit', params: {productId: pro.id}}">
+                                                <button class="btn btn-warning button">Edit</button><br><br>
+                                            </router-link>
+                                            
+                                            <button @click.prevent="deleteProduct(pro.id)" class="btn btn-danger button">Delete</button>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
@@ -70,14 +80,36 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import {mapGetters, mapActions} from 'vuex'
     export default {
         computed: {
             ...mapGetters('client',['getProducts'])
-        }
+        },
+        methods: {
+            ...mapActions('client', ['getType', 'getProduct']),
+            deleteProduct(id) {
+                let uri = `http://127.0.0.1:8000/api/admin/deleteProduct/${id}`;
+                this.axios.delete(uri).then(response => {
+                    this.$router.go(0)
+                    console.log(response.data);
+                })
+            }
+        },
+        created() {
+            // Lấy toàn bộ data của types và products
+            let uri = 'http://127.0.0.1:8000/api/client/getClient';
+            this.axios.get(uri).then(response => {
+                // console.log(response.data);
+                this.getType(response.data.types); 
+                this.getProduct(response.data.products);
+            });   
+        },
     }
 </script>
 
-<style>
-
+<style scoped>
+    .button {
+        min-height:30px; 
+        min-width: 90px;
+    }
 </style>

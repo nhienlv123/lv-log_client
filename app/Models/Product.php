@@ -14,8 +14,14 @@ class Product extends Model
         'description',
         'image',
     ];
+
     public function sizes()
     {
         return $this->hasMany(Size::class, 'product_id', 'id');
+    }
+    
+    public function type_maps()
+    {
+        return $this->hasMany(Type_map::class, 'product_id', 'id');
     }
 }

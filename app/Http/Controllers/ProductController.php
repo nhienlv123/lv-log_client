@@ -35,4 +35,27 @@ class ProductController extends Controller
         }
     }
 
+    public function addProduct(Request $request) {        
+        $data = [];
+        $data['name'] = $request->get('name');
+        $data['typeId'] = data_get($request->get('type'),'*.id');
+        $data['color'] = $request->get('color');
+        $data['price'] = $request->get('price');
+        $data['size'] = $request->get('size');
+        $data['quantity'] = $request->get('quantity');
+        $data['image'] = $request->get('image');
+        $data['description'] = $request->input('description');
+
+        $message = $this->productManagementService->addProduct($data);
+        return response()->json([
+            "message" => $message, 
+        ]);
+    }
+
+    public function deleteProduct($id) {
+        $message = $this->productManagementService->deleteProduct($id);
+        return response()->json([
+            "message" => $message, 
+        ]);
+    }
 }
